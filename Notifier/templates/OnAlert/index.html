@@ -1,0 +1,46 @@
+{% extends 'OnAlert/basic.html' %}
+
+
+<!-- title of index -->
+{% block title %}OnAlert{% endblock %}
+
+
+<!-- body of index -->
+{% block body %}
+<form action="/" method="post"> {% csrf_token %}
+    <div>
+        <select id="contest" name="userOpt">
+            <option value="all" selected>All Events</option>
+            <option value="cc">Code-Chef</option>
+            <option value="cf">Code-Forces</option>
+    </div>
+    <input type="submit" value="Get">
+</form>
+<div>
+    Platform : {{platform}}
+</div>
+<div>
+    <table>
+        <thead>
+            <th>When</th>
+            <th>Duration</th>
+            <th>Platform</th>
+            <th>Contest</th>
+        </thead>
+        <tbody>
+            {% for contest in contests %}
+            <tr>
+                <td>{{contest.when}}</td>
+                <td>{{contest.duration}}</td>
+                <td><a href="{{contest.platform_link}}" style="text-decoration: none;" target="_blank"><img
+                            src="media/{{contest.platform_img}}/">&nbsp;&nbsp;&nbsp;{{contest.platform}}</a>
+                    &nbsp;&nbsp;&nbsp;</td>
+
+                <td><a href="{{contest.contest_link}}" target="_blank">{{contest.contest}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
