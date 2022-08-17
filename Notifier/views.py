@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from .models import Contest
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+def login(request):
+    return render(request,'OnAlert/login.html')
 
 def byRecency():
     contests = Contest.objects.all().order_by('when')
@@ -24,7 +28,7 @@ def byCategory(opt):
 
     return params
 
-
+@login_required
 def index(request):
     opt = request.POST.get('userOpt', 'default')
 

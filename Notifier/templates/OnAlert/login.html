@@ -1,0 +1,11 @@
+{% extends 'OnAlert/basic.html' %}
+
+
+{% block title %}OnAlert - Login Page{% endblock %}
+{% block body %}
+
+<div class="login">
+    <button><a href="{% url 'social:begin' 'google-oauth2' %}">Login With Google</a></button>
+</div>
+
+{% endblock %}
