@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Contest
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -28,7 +29,7 @@ def byCategory(opt):
 
     return params
 
-@login_required
+# @login_required
 def index(request):
     opt = request.POST.get('userOpt', 'default')
 
@@ -42,3 +43,7 @@ def index(request):
         params = byCategory(opt)
 
     return render(request, 'OnAlert/index.html', params)
+
+@login_required
+def get_notification(request):
+    return HttpResponse("You Will Now Receive Notification<br><a href='/'><button>Back</button></a>")

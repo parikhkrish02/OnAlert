@@ -8,7 +8,14 @@
 <!-- body of index -->
 {% block body %}
 
-{% comment %} Welcome {{user.uername}} {% endcomment %}
+{% if user.is_authenticated %}
+Welcome {{user.username}}
+<a href="logout/"><button>Logout</button></a>
+{% else %}
+Hey Buddy, Login To Get Notification. 
+<a href="login/"><button>With Google</button></a>
+{% endif %}
+<a href="get_notification/"><button>Notify With Gmail</button></a>
 <form action="/" method="post"> {% csrf_token %}
     <div>
         <select id="contest" name="userOpt">
