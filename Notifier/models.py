@@ -1,13 +1,13 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 
 class Contest(models.Model):
-    platform_img = models.ImageField(upload_to='notifier/images/', default='')
+    platform_img = models.ImageField(upload_to="notifier/images/", default="")
     platform = models.CharField(max_length=20)
-    platform_link = models.CharField(max_length=200, default='')
+    platform_link = models.CharField(max_length=200, default="")
     contest = models.CharField(max_length=50)
     contest_link = models.CharField(max_length=200)
     when = models.DateTimeField()
