@@ -1,8 +1,10 @@
+from cmath import log
 from django.shortcuts import render
 from .models import Contest
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django import forms
 
 # Create your views here.
 
@@ -52,6 +54,8 @@ def index(request):
     return render(request, "OnAlert/index.html", params)
 
 
-# @login_required
+@login_required
 def get_notification(request):
-    return render(request, "OnAlert/Notify.html")
+    contests = Contest.objects.values("platform").distinct()
+    params = {"contests": contests}
+    return render(request, "OnAlert/Notify.html", params)
