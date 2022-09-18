@@ -15,3 +15,11 @@ class Contest(models.Model):
 
     def __str__(self):
         return self.contest
+
+
+class MyContest(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    selectedContest = models.ManyToManyField(Contest)
+
+    def __str__(self):
+        return self.user.username

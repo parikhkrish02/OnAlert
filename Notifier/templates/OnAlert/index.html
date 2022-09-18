@@ -20,7 +20,7 @@ Hey Buddy, Login To Get Notification.
 <a href="get_notification/"><button>Notify With Gmail</button></a>
 
 
-<form action="/" method="get"> {% csrf_token %}
+<form action="/" method="post"> {% csrf_token %}
     <div>
         <select id="contest" name="userOpt">
             <option value="all" selected>All Events</option>

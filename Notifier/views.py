@@ -1,10 +1,8 @@
-from cmath import log
 from django.shortcuts import render
-from .models import Contest
-from django.http import HttpResponse
+from .models import Contest, User, MyContest
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from django import forms
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -51,11 +49,24 @@ def index(request):
     elif opt == "cf":
         params = byCategory(opt)
 
+    u1 = User.objects.filter(username=request.user)
+    for i in u1:
+        con1 = MyContest.objects.filter(user=i)
+        for mycnt in con1:
+            print(mycnt.selectedContest.all())
+
     return render(request, "OnAlert/index.html", params)
 
 
 @login_required
 def get_notification(request):
+
+    if request.method == "POST":
+        print(request.POST.getlist("platform[]"))
+        messages.success(request, "Contests Notification details updated.")
+    else:
+        pass
+
     contests = Contest.objects.values("platform").distinct()
     params = {"contests": contests}
     return render(request, "OnAlert/Notify.html", params)

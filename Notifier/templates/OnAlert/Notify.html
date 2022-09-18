@@ -1,21 +1,26 @@
 {% extends 'OnAlert/basic.html' %} {% block title %} Notification {% endblock %}
 {% block body %}
-
-<h3>Notification On</h3>
-
 <div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
     <h3>Notify For</h3>
-    <form method="post">{% csrf_token %} 
+    <form method="post">{% csrf_token %}
 
         <div>
             {% for contest in contests %}
             <div>
-                <input type="checkbox" name="platform" value="{{contest.platform}}" />{{contest.platform}}
+                <input type="checkbox" name="platform[]" value="{{contest.platform}}" />{{contest.platform}}
             </div>
             {% endfor %}
             <input type="submit" value="Submit" />
         </div>
     </form>
+    <a href="/"><button>Back To Home</button></a>
 </div>
 
 {% endblock %}
