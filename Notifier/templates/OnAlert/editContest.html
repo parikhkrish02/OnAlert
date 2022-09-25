@@ -1,0 +1,25 @@
+{% extends 'OnAlert/basic.html' %} {% block title %} Notification {% endblock %}
+{% block body %}
+<div>
+    <h3>Notify For</h3>
+    <form method="post">
+        {% csrf_token %}
+
+        <div>
+            {% for contest in contests %}
+            <div>
+                <input
+                    type="checkbox"
+                    name="platform_name[]"
+                    value="{{contest.platform_name}}"
+                />{{contest.platform_name}}
+            </div>
+            {% endfor %}
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+    <a href="/get_notification"><button>My Contest</button></a>
+    <a href="/"><button>Back To Home</button></a>
+</div>
+
+{% endblock %}

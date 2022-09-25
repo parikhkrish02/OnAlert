@@ -9,17 +9,21 @@
     </ul>
     {% endif %}
     <h3>Notify For</h3>
-    <form method="post">{% csrf_token %}
+    <form>{% csrf_token %}
 
         <div>
             {% for contest in contests %}
             <div>
-                <input type="checkbox" name="platform[]" value="{{contest.platform}}" />{{contest.platform}}
+                {% comment %} <input type="checkbox" name="platform_name[]" value="{{contest.platform_name}}" />{{contest.platform_name}} {% endcomment %}
+                <ul>
+                    <li>{{contest.platform_name}}</li>
+                </ul>
             </div>
             {% endfor %}
-            <input type="submit" value="Submit" />
         </div>
     </form>
+    
+    <a href="/set_notification"><button>Edit</button></a>
     <a href="/"><button>Back To Home</button></a>
 </div>
 
