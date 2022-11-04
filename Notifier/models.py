@@ -4,26 +4,24 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class Contest(models.Model):
-    platform_img = models.ImageField(upload_to="notifier/images/", default="")
-    platform_name = models.CharField(max_length=20)
-    platform_link = models.CharField(max_length=200, default="")
-    contest = models.CharField(max_length=50)
-    contest_link = models.CharField(max_length=200)
-    when = models.DateTimeField()
-    duration = models.IntegerField(default=3)
-
-    def __str__(self):
-        return self.contest
-
-
 class Platform(models.Model):
     platform_name = models.CharField(max_length=20)
     platform_link = models.CharField(max_length=200, default="", blank=True)
-    contest = models.ManyToManyField(Contest, blank=True)
+    platform_img = models.ImageField(upload_to="notifier/images/", default="")
 
     def __str__(self):
         return self.platform_name
+
+
+class Contest(models.Model):
+    platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
+    contest = models.CharField(max_length=50)
+    contest_link = models.CharField(max_length=200)
+    when = models.DateTimeField()
+    duration=models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.contest
 
 
 class MyContest(models.Model):

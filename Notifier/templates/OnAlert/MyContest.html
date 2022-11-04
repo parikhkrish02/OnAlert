@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>OnAlert - {{request.user}}</title>
+    </head>
+    <body>
+        {% if contests %} {% for contest in contests %}
+        <div>
+            {{contest.platform}} : {{contest.contest}} :
+            {{contest.contest_link}} : {{contest.when}} : {{contest.duration}}
+            hrs
+        </div>
+        {% endfor %} {% else %} No Contests Selected {% endif %}
+
+        <a href="/get_notification"><button>Notify</button></a>
+        <a href="/set_notification"><button>Modify</button></a>
+        <a href="/"><button>Back To Home</button></a>
+    </body>
+</html>

@@ -2,23 +2,24 @@
 {% block body %}
 <div>
     <h3>Notify For</h3>
-    <form method="post">
-        {% csrf_token %}
-
+    <div>
+        <h1>Selected</h1>
+        {% for contest in selected_contests %}
         <div>
-            {% for contest in contests %}
-            <div>
-                <input
-                    type="checkbox"
-                    name="platform_name[]"
-                    value="{{contest.platform_name}}"
-                />{{contest.platform_name}}
-            </div>
-            {% endfor %}
-            <input type="submit" value="Submit" />
+            {{contest.platform_name}}
+            <a href="remove/{{contest.platform_name}}">Remove</a>
         </div>
-    </form>
-    <a href="/get_notification"><button>My Contest</button></a>
+        {% endfor %}
+        <h1>Un-Selected</h1>
+        {% for contest in unselected_contests %}
+        <div>
+            {{contest.platform_name}}
+            <a href="add/{{contest.platform_name}}">Add</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="/get_notification"><button>Notify</button></a>
     <a href="/"><button>Back To Home</button></a>
 </div>
 

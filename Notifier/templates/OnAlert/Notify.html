@@ -1,13 +1,6 @@
 {% extends 'OnAlert/basic.html' %} {% block title %} Notification {% endblock %}
 {% block body %}
 <div>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-            {% endfor %}
-    </ul>
-    {% endif %}
     <h3>Notify For</h3>
     <form>{% csrf_token %}
 
@@ -23,7 +16,8 @@
         </div>
     </form>
     
-    <a href="/set_notification"><button>Edit</button></a>
+    <a href="/set_notification"><button>Modify</button></a>
+    <a href="/my_contest"><button>My Contest</button></a>
     <a href="/"><button>Back To Home</button></a>
 </div>
 

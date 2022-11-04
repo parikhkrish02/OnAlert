@@ -12,20 +12,23 @@
 {% if user.is_authenticated %}
 Welcome {{user.username}}
 <a href="logout/"><button>Logout</button></a>
+<a href="fetch_data/"><button>Refresh Data</button></a>
 {% else %}
 Hey Buddy, Login To Get Notification.
 <a href="{% url 'social:begin' 'google-oauth2' %}"><button>With Google</button></a>
 {% endif %}
 
 <a href="get_notification/"><button>Notify With Gmail</button></a>
+<a href="my_contest"><button>My Contest</button></a>
 
 
 <form action="/" method="post"> {% csrf_token %}
     <div>
         <select id="contest" name="userOpt">
             <option value="all" selected>All Events</option>
-            <option value="cc">Code-Chef</option>
-            <option value="cf">Code-Forces</option>
+            {% for platform in platforms %}
+            <option value={{platform.platform_name}}>{{platform.platform_name}}</option>
+            {% endfor %}
     </div>
     <input type="submit" value="Get">
 </form>
@@ -41,17 +44,33 @@ Hey Buddy, Login To Get Notification.
             <th>Contest</th>
         </thead>
         <tbody>
+            {% if platform_name == 'All' %}
+
             {% for contest in contests %}
             <tr>
                 <td>{{contest.when}}</td>
                 <td>{{contest.duration}}</td>
-                <td><a href="{{contest.platform_link}}" style="text-decoration: none;" target="_blank"><img
-                            src="media/{{contest.platform_img}}/">&nbsp;&nbsp;&nbsp;{{contest.platform_name}}</a>
+                <td><a href="{{contest.platform.platform_link}}" style="text-decoration: none;" target="_blank"><img
+                            src="media/{{contest.platform.platform_img}}/">&nbsp;&nbsp;&nbsp;{{contest.platform}}</a>
                     &nbsp;&nbsp;&nbsp;</td>
 
                 <td><a href="{{contest.contest_link}}" target="_blank">{{contest.contest}}</a></td>
             </tr>
             {% endfor %}
+            {% else %}
+
+            {% for contest in contests %}
+            <tr>
+                <td>{{contest.when}}</td>
+                <td>{{contest.duration}}</td>
+                <td><a href="{{this_platform.platform_link}}" style="text-decoration: none;" target="_blank"><img
+                            src="media/{{this_platform.platform_img}}/">&nbsp;&nbsp;&nbsp;{{this_platform.platform_name}}</a>
+                    &nbsp;&nbsp;&nbsp;</td>
+
+                <td><a href="{{contest.contest_link}}" target="_blank">{{contest.contest}}</a></td>
+            </tr>
+            {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 </div>
