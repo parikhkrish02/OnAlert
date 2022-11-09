@@ -12,24 +12,18 @@ import time
 
 
 def home(request):
-    todaysContests = Contest.objects.filter(when__date=datetime.today().date())
-    if todaysContests.exists():
-        params = {"type": "Today's Contest", "contests": todaysContests}
-        print(todaysContests)
-    else:
-        recentFive = Contest.objects.order_by("when")[:5]
-        params = {"type": "Recent Five Contests", "contests": recentFive}
-        print(recentFive)
+    recentFive = Contest.objects.order_by("when")[:5]
+    params = {"contests": recentFive}
 
-    return render(request, "OnAlert/home.html", params)
+    return render(request, "index.html", params)
 
 
 def login(request):
-    return render(request, "OnAlert/login.html")
+    return render(request, "login.html")
 
 
-@login_required
-def index(request):
+# @login_required
+def contests(request):
     opt = "default"
     if request.method == "POST":
         opt = request.POST["userOpt"]
@@ -51,7 +45,15 @@ def index(request):
             "this_platform": platform,
         }
 
-    return render(request, "OnAlert/index.html", params)
+    return render(request, "contests.html", params)
+
+
+def aboutUs(request):
+    return render(request, "about.html")
+
+
+def contactUs(request):
+    return render(request, "contact.html")
 
 
 @login_required
@@ -87,19 +89,7 @@ def setNotification(request):
         "selected_contests": selected_contest,
         "unselected_contests": unselected_contests,
     }
-    return render(request, "OnAlert/editContest.html", params)
-
-
-@login_required
-def get_notification(request):
-    if not MyContest.objects.filter(user=request.user).exists():
-        MyContest.objects.create(user=request.user)
-
-    contest = MyContest.objects.get(user=request.user)
-    contests = contest.selectedContest.all()
-    params = {"contests": contests}
-
-    return render(request, "OnAlert/Notify.html", params)
+    return render(request, "plat.html", params)
 
 
 @login_required
@@ -113,10 +103,9 @@ def myContest(request):
             contests.append(temp_contest)
 
     params = {"contests": contests}
-    return render(request, "OnAlert/MyContest.html", params)
+    return render(request, "MyContest.html", params)
 
 
-@login_required
 def scrape(requests):
 
     CodeChef()

@@ -1,0 +1,88 @@
+{% extends 'basic.html' %} 
+
+{% load static %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block style %}
+
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/sub-css/normalize.css' %}" />
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'css/sub-css/demo.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/sub-css/component.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/sub-css/cs-select.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/sub-css/cs-skin-boxes.css' %}" />
+
+	<script src="{% static 'js/sub-js/modernizr.custom.js' %}"></script>
+
+{% endblock style %}
+
+
+{% block body %}
+
+	<div class="container">
+
+		<div class="fs-form-wrap" id="fs-form-wrap">
+			<div class="fs-title">
+				<h1> CONTACT US </h1>
+			</div>
+			<form action="/contact_us" id="myform" class="fs-form fs-form-full" autocomplete="off">
+				<ol class="fs-fields">
+					<li>
+						<label class="fs-field-label fs-anim-upper" for="q1">What's your First name ?</label>
+						<input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="First Name" required />
+					</li>
+					<li>
+						<label class="fs-field-label fs-anim-upper" for="q2">What's your Last name ?</label>
+						<input class="fs-anim-lower" id="q2" name="q2" type="text" placeholder="Last Name" required />
+					</li>
+					<li>
+						<label class="fs-field-label fs-anim-upper" for="q3" data-info="for regular updates...">What's
+							your email address ?</label>
+						<input class="fs-anim-lower" id="q3" name="q3" type="email" placeholder="xyz@gmail.com"
+							required />
+					</li>
+					<li>
+						<label class="fs-field-label fs-anim-upper" for="q4">MESSAGE</label>
+						<input class="fs-anim-lower" id="q4" name="q4" type="text"
+							placeholder="Tell us about your query/suggestion" required />
+					</li>
+
+				</ol>
+				<button class="fs-submit" type="submit">SUBMIT</button>
+			</form>
+		</div>
+
+	</div>
+
+{% endblock body %}
+
+{% block script %}
+
+	<script src="{% static 'js/sub-js/classie.js' %}"></script>
+	<script src="{% static 'js/sub-js/classie.js' %}"></script>
+	<script src="{% static 'js/sub-js/fullscreenForm.js' %}"></script>
+	<script>
+		(function () {
+			var formWrap = document.getElementById('fs-form-wrap');
+
+			[].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+				new SelectFx(el, {
+					stickyPlaceholder: false,
+					onChange: function (val) {
+						document.querySelector('span.cs-placeholder').style.backgroundColor = val;
+					}
+				});
+			});
+
+			new FForm(formWrap, {
+				onReview: function () {
+					classie.add(document.body, 'overview');
+				}
+			});
+		})();
+	</script>
+
+{% endblock script %}

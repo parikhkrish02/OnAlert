@@ -1,0 +1,1164 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+
+  font-family: "Poppins", sans-serif;
+}
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+}
+#header {
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 0%;
+	top: 0;
+	padding-top: 10px;
+  }
+  
+
+#rounded {
+  border-radius: 100px;
+  padding: 1px;
+  background-color: rgba(120, 120, 120, 0.4);
+  backdrop-filter: blur(20px);
+}
+
+#rounded li {
+  position: relative;
+  padding: 1px 10px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.nav-item a {
+  margin-top: 2px;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding-left: 100em;
+  cursor: pointer;
+  font-weight: inherit;
+  display: flex;
+  background: transparent;
+  background-image: url("https://web.archive.org/web/20160312084140im_/http://splatoon.nintendo.com/assets/img/nav-bg-fill-blue.png?1443460871");
+  background-repeat: repeat-x;
+  background-position: 0 -100%;
+  transition: 1s ease;
+}
+
+.nav-item a:hover {
+  color: white;
+  border-radius: 20px;
+  background-position: center;
+  filter: hue-rotate(40deg);
+}
+a {
+  color: white;
+}
+
+.btn-primary {
+  text-decoration: none;
+  background-color: #9a30ec;
+  background-image: linear-gradient(#9a30ec, #cd4dff);
+  color: white;
+  border: 0px;
+  border: none;
+  margin: 2px;
+  z-index: 1;
+}
+
+
+.fs-form-wrap {
+	position: relative;
+	height: 100%;
+	color: #fff;
+	
+}
+
+.overview .fs-form-wrap {
+	height: auto;
+}
+.container{
+
+	margin-left: 150px;
+	overflow: auto ;
+
+}
+/* Title */
+.fs-title {
+	position: absolute;
+	top: 80px;
+	left: 2px;
+	margin: 1px;
+	padding: 4px;
+	width: 100%;
+	
+	/* background-color: white; */
+	
+}
+
+.fs-title h1{
+	margin: 0;
+	font-family: Impact, 'Arial Narrow Bold', sans-serif;
+	letter-spacing: 5px;
+	font-size: 30px;
+	color:#e1b9ff;
+	text-align: center;
+}
+
+/* Form */
+
+.fs-form {
+	
+	position: relative;
+	text-align: left;
+	font-size: 2.5em;
+}
+
+.no-js .fs-form {
+	padding: 0 0 6em 0;
+}
+
+/* Views (fullscreen and overview)*/
+.fs-form-full {
+	top: 32%;
+	margin: 0 auto;
+	width: 70%;
+}
+
+.fs-form-full,
+.fs-message-error {
+	max-width: 960px;
+}
+
+.fs-form-overview {
+	padding: 2.5em 30% 6em;
+	width: 100%;
+	height: 100%;
+	background: #e1b9ff;;
+	color: #3b3f45;
+	font-size: 1.2em;
+}
+
+.fs-form-overview .fs-fields::before {
+	display: block;
+	margin-bottom: 2.5em;
+	color: #3b3f45;
+	content: 'Review & Submit';
+	font-weight: 700;
+	font-size: 1.85em;
+}
+
+/* Switch view animation (we hide the current view, switch the view class and show it again) */
+.fs-form.fs-show {
+	-webkit-animation: animFadeIn 0.5s;
+	animation: animFadeIn 0.5s;
+}
+
+@-webkit-keyframes animFadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes animFadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.fs-form.fs-show .fs-fields {
+	-webkit-animation: animMove 0.5s;
+	animation: animMove 0.5s;
+}
+
+@-webkit-keyframes animMove {
+	from { top: 100px; }
+}
+
+@keyframes animMove {
+	from { top: 100px; }
+} /* we need to use top here because otherwise all our fixed elements will become absolute */
+
+/* Visibility control of elements */
+.fs-form-full .fs-fields > li,
+.fs-nav-dots, 
+.fs-progress,
+.fs-numbers,
+button.fs-continue,
+.fs-message-error,
+.fs-message-final {
+	visibility: hidden;
+}
+
+.no-js .fs-form-full .fs-fields > li {
+	visibility: visible;
+}
+
+.fs-show {
+	visibility: visible !important;
+}
+
+/* Some general styles */
+.fs-form-wrap button {
+	border: none;
+	background: none;
+}
+
+.fs-form-wrap button[disabled] {
+	opacity: 0.3;
+	pointer-events: none;
+}
+
+.fs-form-wrap input:focus,
+.fs-form-wrap button:focus {
+	outline: none;
+}
+
+/* Hide the submit button */
+.fs-form .fs-submit {
+	display: none;
+}
+
+/* Fields */
+.fs-fields {
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	top: 0;
+	list-style: none;
+}
+/* 
+.fs-form-overview ol {
+	max-width: ;
+} */
+
+.fs-fields > li {
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.fs-fields > li:hover {
+	z-index: 999;
+}
+
+.js .fs-form-full .fs-fields > li {
+	position: absolute;
+	width: 100%;
+}
+
+.fs-form-overview .fs-fields > li,
+.no-js .fs-form .fs-fields > li {
+	margin: 1em 0 2em;
+	padding: 0 0 2em 0;
+	border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+/* Labels & info */
+.fs-fields > li label {
+	position: relative;
+}
+
+.fs-fields > li label.fs-field-label {
+	display: inline-block;
+	padding: 0 5px 1em 0;
+	font-weight: 700;
+	pointer-events: none;
+}
+
+.fs-form-full .fs-fields > li label[data-info]::after {
+	position: relative;
+	display: inline-block;
+	margin-left: 10px;
+	width: 24px;
+	height: 24px;
+	border: 2px solid rgba(0,0,0,0.4);
+	color: rgba(0,0,0,0.4);
+	border-radius: 50%;
+	content: 'i';
+	vertical-align: top;
+	text-align: center;
+	font-weight: 700;
+	font-style: italic;
+	font-size: 14px;
+	font-family: Georgia, serif;
+	line-height: 20px;
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+.fs-form-full .fs-fields > li label[data-info]::before {
+    position: absolute;
+    bottom: 100%;
+   	left: 0;
+    padding: 0 0 10px;
+    min-width: 200px;
+	content: attr(data-info);
+	font-size: 0.4em;
+	color: #6a7b7e;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    -webkit-transform: translate3d(0,-5px,0);
+    transform: translate3d(0,-5px,0);
+    pointer-events: none;
+}
+
+.fs-form-full .fs-fields > li label[data-info]:hover::before {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.fs-form-full .fs-fields > li label:hover ~ .fs-info,
+.fs-form-full .fs-fields > li .fs-info:hover {
+	opacity: 1;
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* Inputs */
+.fs-fields input {
+	display: block;
+	margin: 0;
+	padding: 0 0 0.15em;
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid rgba(0,0,0,0.2);
+	background-color: transparent;
+	color: #e1b9ff;
+	text-overflow: ellipsis;
+	font-weight: bold;
+	font-size: 1.5em;
+	border-radius: 0;
+}
+
+.fs-fields input:invalid {
+	box-shadow: none; /* removes red shadow in FF*/
+}
+
+.fs-form-overview .fs-fields input {
+	border-bottom-color: transparent;
+	color: rgba(0,0,0,0.5);
+}
+
+.fs-fields [required] {
+	background-image: url(../img/abacusstar.svg);
+	background-position: top right;
+	background-size: 18px;
+	background-repeat: no-repeat;
+}
+
+.fs-fields input:focus {
+	background-color: #3b3f45; /* Fixes chrome bug with placeholder */
+}
+
+.fs-form-overview .fs-fields input:focus {
+	background-color: #e1b9ff; /* Fixes chrome bug with placeholder */
+}
+
+.fs-form-overview .fs-fields input {
+	font-size: 1.2em;
+}
+
+.fs-fields .fs-radio-custom input[type="radio"] {
+	position: absolute;
+	display: block;
+	margin: 30px auto 20px;
+	margin: 0 auto 20px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.fs-fields > li .fs-radio-custom span {
+	float: left;
+	position: relative;
+	margin-right: 3%;
+	padding: 10px;
+	max-width: 200px;
+	width: 30%;
+	text-align: center;
+	font-weight: 700;
+	font-size: 50%;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.fs-fields > li .fs-radio-custom span label {
+	color: rgba(0,0,0,0.4);
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.fs-form-overview .fs-fields > li .fs-radio-custom span {
+	max-width: 140px;
+}
+
+.fs-form-overview .fs-fields > li .fs-radio-custom span {
+	font-size: 75%;
+}
+
+.fs-fields > li .fs-radio-custom label {
+	display: block;
+	padding-top: 100%;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.fs-fields .fs-radio-custom label::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	background-position: 50% 0%;
+	background-size: 85%;
+	background-repeat: no-repeat;
+	content: '';
+	opacity: 0.5;
+	-webkit-transition: opacity 0.2s;
+	transition: opacity 0.2s;
+	-webkit-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+
+.fs-fields .fs-radio-custom label.radio-mobile::after {
+	background-image: url(../img/mobile.svg);
+}
+
+.fs-fields .fs-radio-custom label.radio-social::after {
+	background-image: url(../img/social.svg);
+}
+
+.fs-fields .fs-radio-custom label.radio-conversion::after {
+	background-image: url(../img/conversion.svg);
+}
+
+.fs-fields .fs-radio-custom label:hover::after,
+.fs-fields input[type="radio"]:focus + label::after,
+.fs-fields input[type="radio"]:checked + label::after {
+	opacity: 1;
+}
+
+.fs-fields .fs-radio-custom input[type="radio"]:checked + label {
+	color: #e1b9ff;
+}
+
+.fs-form-overview .fs-fields .fs-radio-custom input[type="radio"]:checked + label {
+	color: rgba(0,0,0,0.8);
+}
+
+.fs-fields textarea {
+	padding: 0.25em;
+	width: 100%;
+	height: 200px;
+	border: 2px solid rgba(0,0,0,0.2);
+	background-color: transparent;
+	color: #fffed8;
+	font-weight: 700;
+	font-size: 0.85em;
+	resize: none;
+}
+
+.fs-form-overview .fs-fields textarea {
+	height: 100px;
+	color: rgba(0,0,0,0.5);
+}
+
+.fs-fields textarea:focus {
+	outline: none;
+}
+
+.fs-form-overview .fs-fields textarea {
+	padding: 0;
+	border-color: transparent;
+}
+
+.fs-form-overview .fs-fields textarea:focus {
+	background:  #9A30EC ;
+}
+
+.fs-form div.cs-select.cs-skin-boxes {
+	display: block;
+}
+
+.fs-form-overview .cs-skin-boxes > span {
+	border-radius: 5px;
+	width: 90px;
+	height: 70px;
+	font-size: 0.8em;
+}
+
+.fs-form-overview .cs-skin-boxes > span::before {
+	padding-top: 50px;
+	box-shadow: 0 20px 0 #292c30, inset 0 -5px #292c30;
+}
+
+.fs-fields input.fs-mark {
+	padding-left: 1em;
+	background-image: url(../img/dollar.svg);
+	background-position: 0% 0.15em;
+	background-size: auto 75%;
+	background-repeat: no-repeat;
+}
+
+.fs-fields input.fs-mark[required] {
+	background-image: url(../img/dollar.svg), url(../img/abacusstar.svg);
+	background-position: 0% 0.15em, top right;
+	background-size: auto 75%, 18px;
+	background-repeat: no-repeat;
+}
+
+/* placeholder */
+.fs-fields input::-webkit-input-placeholder,
+.fs-fields textarea::-webkit-input-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+.fs-fields input:-moz-placeholder,
+.fs-fields textarea:-moz-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+.fs-fields input::-moz-placeholder,
+.fs-fields textarea::-moz-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+.fs-fields input:-ms-input-placeholder,
+.fs-fields textarea:-ms-input-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+/* Hide placeholder when focused in Webkit browsers */
+.fs-fields input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+/* Dot navigation */
+.fs-nav-dots {
+	position: absolute;
+	top: 50%;
+	right: 60px;
+	left: auto;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.fs-nav-dots button {
+	position: relative;
+	display: block;
+	padding: 0;
+	margin: 16px 0;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: transparent;
+	-webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.fs-nav-dots button::before,
+.fs-nav-dots button::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: rgba(0,0,0,0.5);
+	content: '';
+	text-indent: 0;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.fs-nav-dots button::after {
+	background-color: rgba(0,0,0,0.4);
+	-webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+	transform: perspective(1000px) rotate3d(0,1,0,180deg);
+}
+
+.fs-nav-dots button.fs-dot-current {
+	-webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+	transform: perspective(1000px) rotate3d(0,1,0,180deg);
+}
+
+.fs-nav-dots button:hover::before,
+.fs-nav-dots button.fs-dot-current::before {
+	background: #e1b9ff;
+}
+
+/* Progress bar */
+.fs-progress {
+	position: absolute;
+	top: 0;
+	width: 0%;
+	height: 0.5em;
+	background:#9A30EC;
+
+	-webkit-transition: width 0.3s ease-in-out;
+	transition: width 0.3s ease-in-out;
+}
+
+/* Number indicator */
+.fs-numbers {
+	position: absolute;
+	top: 0;
+	right: 0;
+	overflow: hidden;
+	color: rgba(124, 124, 124, 0.4);
+	margin: 40px;
+	width: 2em;
+	font-weight: 700;
+	font-size: 2em;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	cursor: default;
+}
+
+.fs-numbers:after {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	content: '/';
+	font-weight: 300;
+	opacity: 0.4;
+	left: 0;
+}
+
+.fs-numbers span {
+	float: right;
+	width: 40%;
+	text-align: center;
+}
+
+.fs-numbers .fs-number-current {
+	float: left;
+}
+
+.fs-numbers .fs-number-new {
+	position: absolute;
+	left: 0;
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+/* Animations for numbers */
+/* Show next number */
+.fs-numbers.fs-show-next .fs-number-new {
+	-webkit-animation: animMoveUpFromDown 0.4s both;
+	animation: animMoveUpFromDown 0.4s both;
+}
+
+@-webkit-keyframes animMoveUpFromDown {
+	from { -webkit-transform: translateY(100%); }
+	to { -webkit-transform: translateY(0); }
+}
+
+@keyframes animMoveUpFromDown {
+	from { -webkit-transform: translateY(100%); transform: translateY(100%); }
+	to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+.fs-numbers.fs-show-next .fs-number-current {
+	-webkit-animation: animMoveUp 0.4s both;
+	animation: animMoveUp 0.4s both;
+}
+
+@-webkit-keyframes animMoveUp {
+	to { -webkit-transform: translateY(-100%); }
+}
+
+@keyframes animMoveUp {
+	to { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+
+/* Show previous number */
+.fs-numbers.fs-show-prev .fs-number-new {
+	-webkit-animation: animMoveDownFromUp 0.4s both;
+	animation: animMoveDownFromUp 0.4s both;
+}
+
+@-webkit-keyframes animMoveDownFromUp {
+	from { -webkit-transform: translateY(-100%); }
+	to { -webkit-transform: translateY(0); }
+}
+
+@keyframes animMoveDownFromUp {
+	from { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+	to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+.fs-numbers.fs-show-prev .fs-number-current {
+	-webkit-animation: animMoveDown 0.4s both;
+	animation: animMoveDown 0.4s both;
+}
+
+@-webkit-keyframes animMoveDown {
+	to { -webkit-transform: translateY(100%); }
+}
+
+@keyframes animMoveDown {
+	to { -webkit-transform: translateY(100%); transform: translateY(100%); }
+}
+
+/* Continue button and submit button */
+button.fs-submit,
+button.fs-continue {
+	padding: 0.6em 1.5em;
+	border: 3px solid #232529;
+	border-radius: 40px;
+	font-weight: 700;
+	color: rgba(0,0,0,0.4);
+}
+
+.fs-form-overview .fs-submit,
+.no-js .fs-form .fs-submit  {
+	display: block;
+	float: right;
+}
+
+.fs-form-overview .fs-submit {
+	border-color: #232529;
+	color: #232529;
+}
+
+button.fs-continue {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 0 40px 60px 0;
+	font-size: 1.25em;
+}
+
+button.fs-submit:hover,
+button.fs-submit:focus,
+button.fs-continue:hover {
+	background: #232529;
+	color: #fff;
+}
+
+.fs-continue::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	line-height: 3;
+	text-align: center;
+	background: transparent;
+	color: rgba(0,0,0,0.3);
+	content: 'or press ENTER';
+	font-size: 0.65em;
+	pointer-events: none;
+}
+
+/* Error message */
+.fs-message-error {
+	position: absolute;
+	bottom: 75%;
+	left: 50%;
+	z-index: 800;
+	max-width: 960px;
+	width: 70%;
+	color: #eb7e7f;
+	font-weight: 700;
+	font-size: 1em;
+	opacity: 0;
+	-webkit-transform: translate3d(-50%,-5px,0);
+	transform: translate3d(-50%,-5px,0);
+}
+
+.fs-message-error.fs-show {
+	opacity: 1;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translate3d(-50%,0,0);
+	transform: translate3d(-50%,0,0);
+}
+
+/* Animation classes & animations */
+.fs-form li.fs-current {
+	visibility: visible;
+}
+
+.fs-form li.fs-hide,
+.fs-form li.fs-show {
+	pointer-events: none;
+}
+
+/* Hide current li when navigating to next question */
+.fs-form .fs-display-next .fs-hide {
+	visibility: visible;
+}
+
+.fs-form .fs-display-next .fs-hide .fs-anim-lower,
+.fs-form .fs-display-next .fs-hide .fs-anim-upper {
+	-webkit-animation: animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+	animation: animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+.fs-form .fs-display-next .fs-hide .fs-anim-lower {
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
+}
+
+@-webkit-keyframes animHideNext {
+	to { opacity: 0; -webkit-transform: translate3d(0,-500px,0); }
+}
+
+@keyframes animHideNext {
+	to { opacity: 0; -webkit-transform: translate3d(0,-500px,0); transform: translate3d(0,-500px,0); }
+}
+
+/* Show new li when navigating to next question */
+.fs-form .fs-display-next .fs-show .fs-anim-lower,
+.fs-form .fs-display-next .fs-show .fs-anim-upper {
+	-webkit-animation: animShowNext 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+	animation: animShowNext 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+}
+
+.fs-form .fs-display-next .fs-show .fs-anim-lower {
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+
+@-webkit-keyframes animShowNext {
+	from { opacity: 0; -webkit-transform: translate3d(0,500px,0); }
+}
+
+@keyframes animShowNext {
+	from { opacity: 0; -webkit-transform: translate3d(0,500px,0); transform: translate3d(0,500px,0); }
+}
+
+/* Hide current li when navigating to previous question */
+.fs-form .fs-display-prev .fs-hide {
+	visibility: visible;
+}
+
+.fs-form .fs-display-prev .fs-hide .fs-anim-lower,
+.fs-form .fs-display-prev .fs-hide .fs-anim-upper {
+	-webkit-animation: animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+	animation: animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+.fs-form .fs-display-prev .fs-hide .fs-anim-upper {
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
+}
+
+@-webkit-keyframes animHidePrev {
+	to { opacity: 0; -webkit-transform: translate3d(0,500px,0); }
+}
+
+@keyframes animHidePrev {
+	to { opacity: 0; -webkit-transform: translate3d(0,500px,0); transform: translate3d(0,500px,0); }
+}
+
+/* Show new li when navigating to previous question */
+.fs-form .fs-display-prev .fs-show .fs-anim-lower,
+.fs-form .fs-display-prev .fs-show .fs-anim-upper {
+	-webkit-animation: animShowPrev 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+	animation: animShowPrev 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+}
+
+.fs-form .fs-display-prev .fs-show .fs-anim-upper {
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+
+@-webkit-keyframes animShowPrev {
+	from { opacity: 0; -webkit-transform: translate3d(0,-500px,0); }
+}
+
+@keyframes animShowPrev {
+	from { opacity: 0; -webkit-transform: translate3d(0,-500px,0); transform: translate3d(0,-500px,0); }
+}
+
+/* Remove IE clear cross */
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+/* Adjust form for smaller screens */
+@media screen and (max-width: 52.5em) {
+	body {
+		min-height: 500px;
+	}
+
+	.fs-form-wrap {
+		font-size: 70%;
+	}
+
+	.fs-form {
+		top: 6em;
+		right: 2em;
+		left: 0;
+		padding: 0 3.75em 0 1em;
+		width: auto;
+		font-size: 2em;
+	}
+
+	.fs-form.fs-form-overview {
+		top: 0;
+		right: 0;
+		padding: 1.5em 1em 8em 1em;
+		font-size: 1.5em;
+	}
+
+	.fs-title {
+		padding: 20px;
+	}
+
+	.fs-numbers {
+		margin: 20px;
+	}
+
+	.fs-nav-dots {
+		right: 25px;
+	}
+
+	button.fs-continue {
+		right: 20px;
+		bottom: 20px;
+		margin: 0;
+		padding: 50px 0 0 50px;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		font-size: 2em;
+	}
+
+	button.fs-continue::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: '\27A1';
+		text-align: center;
+		font-size: 1em;
+		line-height: 50px;
+	}
+
+	.fs-continue::after {
+		content: '';
+	}
+
+	button.fs-submit {
+		width: 100%;
+		font-size: 1.25em;
+	}
+
+	.fs-message-error {
+		bottom: 1.75em;
+		left: 0;
+		padding: 0 90px 0 2em;
+		width: 100%;
+		font-size: 1.5em;
+		-webkit-transform: translate3d(0,-5px,0);
+		transform: translate3d(0,-5px,0);
+	}
+
+	.fs-message-error.fs-show {
+		-webkit-transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);
+	}
+}
+
+
+footer {
+	position: relative;
+	background: #000;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	
+	border: none;
+	padding: 2px;
+  }
+  
+  footer .content {
+	max-width: 1250px;
+	padding: 5% 5% 5% 5%;
+  }
+  footer .content .top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 50px;
+  }
+  .content .top .logo-details {
+	color: whitesmoke;
+	font-size: 50px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-weight: bolder
+  }
+  .content .top .media-icons {
+	display: flex;
+  }
+  .content .top .media-icons a {
+	height: 40px;
+	width: 40px;
+	margin: 0 8px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	font-size: 17px;
+	text-decoration: none;
+	transition: all 0.4s ease;
+  }
+  .top .media-icons a:nth-child(1) {
+	background: #4267b2;
+  }
+  .top .media-icons a:nth-child(1):hover {
+	color: #4267b2;
+	background: #fff;
+  }
+  
+  .top .media-icons a:nth-child(2) {
+	background: #e1306c;
+  }
+  .top .media-icons a:nth-child(2):hover {
+	color: #e1306c;
+	background: #fff;
+  }
+  
+  footer .content .link-boxes {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+  }
+  footer .content .link-boxes .box {
+	width: calc(100% / 5 - 10px);
+  }
+  .content .link-boxes .box .link_name {
+	color: #fff;
+	font-size: 18px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	position: relative;
+  }
+  .link-boxes .box .link_name#foot1::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	height: 2px;
+	width: 43px;
+	background: #9A30EC;
+  }
+  .link-boxes .box .link_name#foot2::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	height: 2px;
+	width: 139px;
+	background: #9A30EC;
+  }
+  .link-boxes .box .link_name#foot3::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	height: 2px;
+	width: 87px;
+	background: #9A30EC;
+  }
+  .link-boxes .box .link_name#foot4::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	height: 2px;
+	width: 74px;
+	background: #9A30EC;
+  }
+  .content .link-boxes .box li {
+	margin: 6px 0;
+	list-style: none;
+  }
+  .content .link-boxes .box li a {
+	color: #fff;
+	font-size: 14px;
+	font-weight: 400;
+	text-decoration: none;
+	opacity: 0.8;
+	transition: all 0.4s ease;
+  }
+  .content .link-boxes .box li a:hover {
+	opacity: 1;
+	color: #9A30EC;
+  }
+  .content .link-boxes .input-box {
+	margin-right: 55px;
+  }
+  .link-boxes .input-box input {
+	height: 40px;
+	width: calc(100% + 55px);
+	outline: none;
+	border: 2px solid #afafb6;
+	background: #140b5c;
+	border-radius: 4px;
+	padding: 0 15px;
+	font-size: 15px;
+	color: #fff;
+	margin-top: 5px;
+  }
+  .link-boxes .input-box input::placeholder {
+	color: #afafb6;
+	font-size: 16px;
+  }
+  .link-boxes .input-box input[type="button"] {
+	background: #fff;
+	color: #140b5c;
+	border: none;
+	font-size: 18px;
+	font-weight: 500;
+	margin: 4px 0;
+	opacity: 0.8;
+	cursor: pointer;
+	transition: all 0.4s ease;
+  }
+  .input-box input[type="button"]:hover {
+	opacity: 1;
+  }
+  
+  
+  
+  
+  
+  footer#copyright {
+	
+	width: 100%;
+	background: #000;
+	border-top: 0.5px solid #fff;
+  }
+  footer#copyright#copyright1{
+	max-width: 1250px;
+	display: flex;
+	justify-content: space-between;
+  }
+  
+  
+  #copyright1 {
+	padding: 7px;
+	text-align: center;
+	font-size: 15px;
+	color: #fff;
+	opacity: 0.8;
+	text-decoration: none;
+  }
+  
+  
+  

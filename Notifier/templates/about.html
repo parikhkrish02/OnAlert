@@ -1,0 +1,86 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block title %}About Us{% endblock title %}
+
+{% block style %}
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="stylesheet" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+{% endblock style %}
+
+{% block body %}
+
+<div id="titleabout">
+  <h1 id="titleabout1">ABOUT US</h1>
+</div>
+<div class="company">
+  <div class="img">
+    <img src="{% static 'images/about-us-page-examples.png' %}" alt="" style="width: 85%; height: 49%; margin-left: 30px;"/>
+    
+  </div>
+  <div class="company-info">
+    <span id="titile">ONALERT <span class="our">personalised notifier </span></span>
+    <p>
+      Competitive programming is very important for Tech students as it increases chances of
+      getting them hired. A lot of Students face issues of missing contests.
+      With the need of such platform which helps students to get notified at regular intervals
+      for contests across various platforms like Codechef, Codeforces, etc.
+      We came up with idea of “OnAlert” which helps students to compete on the various
+      platforms by regularly updating them about contests.
+      ONALERT is customizable web notifier which allows user to select particular platforms
+      and then update them about information regarding it at regular intervals.
+    <div class=""></div>
+    </p>
+  </div>
+</div>
+
+<div class="team"><span>OUR TEAM</span></div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-image loading"><img src="/static/images/AISATHODIHOTAHEIN.jpg" alt="" /></div>
+    <div class="card-info">
+      <h3 class="card-title loading"><span>KRISH <span class="yellow-surname">PARIKH</span></span></h3>
+      <p class="card-description loading">
+        <span class="personal-info">
+          <span class="info">Backend Developer</span> <br>
+          21DCE071 <br>
+          Email: <a href="mailto:21dce071@charusat.edu.in">21DCE071@charusat.edu.in</a>
+        </span>
+      </p>
+
+      <div class="card-mediaIcons">
+        <a href="https://www.linkedin.com/in/krish-parikh-790072226/" target="on_blank"><i
+            class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/parikhkrish02" target="on_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image loading"> <img src="{% static 'images/11a.jpg' %}" alt="" /></div>
+    <div class="card-info">
+      <h3 class="card-title loading"><span>DIVY <span class="yellow-surname">JANI</span></span></h3>
+      <p class="card-description loading">
+        <span class="personal-info">
+          <span class="info">Frontend Developer</span> <br>
+          21DCE036<br>
+          Email: <a href="mailto:21dce036@charusat.edu.in">21DCE036@charusat.edu.in</a>
+        </span>
+      </p>
+      <div class="card-mediaIcons">
+        <a href="https://www.linkedin.com/in/divy-jani-0657b7238" target="on_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/Divy-Jani" target="on_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock body %}
