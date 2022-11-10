@@ -77,8 +77,12 @@ a {
 	z-index: 1;
 }
 
+.hi{
+	display: flex;
+}
+
 #login-form {
-	display: NONE;
+	display: none;
 }
 
 #next1 {

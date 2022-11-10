@@ -14,6 +14,33 @@
 </style>
 {% endblock style %}
 
+  <!-- login -->
+  <div class="loggin">
+    <div class="form-structor" id="login-form">
+      <div class="signup">
+        <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+        <div class="form-holder">
+          <input type="text" class="input" placeholder="Name" />
+          <input type="email" class="input" placeholder="Email" />
+          <input type="password" class="input" placeholder="Password" />
+        </div>
+        <button class="submit-btn">Sign up</button>
+      </div>
+      <div class="login slide-up">
+        <div class="center">
+          <h2 class="form-title" id="login"><span>or</span>Log in</h2>
+          <div class="form-holder">
+            <input type="email" class="input" placeholder="Email" />
+            <input type="password" class="input" placeholder="Password" />
+          </div>
+          <button class="submit-btn">Log in</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slider -->
+<div class="hi">
   <div id="demo" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
       <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -35,29 +62,7 @@
         <img src="{% static 'images/atcoderbanner.png' %}" alt="Los Angeles" width="1100" height="500" />
         {% endif %}
         <div class="carousel-caption">
-          <div class="loggin">
-            <div class="form-structor" id="login-form">
-              <div class="signup">
-                <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
-                <div class="form-holder">
-                  <input type="text" class="input" placeholder="Name" />
-                  <input type="email" class="input" placeholder="Email" />
-                  <input type="password" class="input" placeholder="Password" />
-                </div>
-                <button class="submit-btn">Sign up</button>
-              </div>
-              <div class="login slide-up">
-                <div class="center">
-                  <h2 class="form-title" id="login"><span>or</span>Log in</h2>
-                  <div class="form-holder">
-                    <input type="email" class="input" placeholder="Email" />
-                    <input type="password" class="input" placeholder="Password" />
-                  </div>
-                  <button class="submit-btn">Log in</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           <h3><a href="{{contests.0.contest_link}}" target="on_blank">{{contests.0.contest}}</a></h3>
           <p>{{contests.0.when}}</p>
           <p>{{contests.0.duration}} Hrs.</p>
@@ -78,27 +83,6 @@
           
         <div class="carousel-caption">
           <div class="loggin">
-            <div class="form-structor" id="login-form">
-              <div class="signup">
-                <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
-                <div class="form-holder">
-                  <input type="text" class="input" placeholder="Name" />
-                  <input type="email" class="input" placeholder="Email" />
-                  <input type="password" class="input" placeholder="Password" />
-                </div>
-                <button class="submit-btn">Sign up</button>
-              </div>
-              <div class="login slide-up">
-                <div class="center">
-                  <h2 class="form-title" id="login"><span>or</span>Log in</h2>
-                  <div class="form-holder">
-                    <input type="email" class="input" placeholder="Email" />
-                    <input type="password" class="input" placeholder="Password" />
-                  </div>
-                  <button class="submit-btn">Log in</button>
-                </div>
-              </div>
-            </div>
           </div>
           <h3><a href="{{contest.contest_link}}" target="on_blank">{{contest.contest}}</a></h3>
           <p>{{contest.when}}</p>
@@ -119,8 +103,10 @@
   <div class="no-content" >
     <h3  style="margin-left: 500px; margin-top: 200px; margin-bottom: 100px; color: white;">No Contests Available, Try Refreshing Data</h3>
   </div>
-
+  
+  
   {% endif %}
+</div>
 
 {% endblock body %}
 
