@@ -1,282 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnAlert{% if request.user.is_authenticated %} - {{ request.user}}{% endif %}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/easing/EasePack.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
-    <link rel="stylesheet" href="/static/css/contents.css">
-</head>
-
-<body>
-    <div id="header"
-        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mt-lg-0">
-
-        <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark ">
-            <a href="index.html"> <img src="/static/images/LOGO100.png" height="50" width="220"></a>
-        </div>
-
-
-        <div id="rounded">
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li class="nav-item">
-                    <a href="/" class="nav-link px-2 link-secondary">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/about_us" class="nav-link px-2 link-dark">About
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/contests" class="nav-link px-2 link-dark">Contests</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/contact_us" class="nav-link px-2 link-dark">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/set_notification" class="nav-link px-2 link-dark">Refresh Data</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="col-3 d-flex justify-content-end">
-            <button type="button" id="login-btn" class="btn btn-primary">
-                <a href="/logout" style="color: #ffffff;">{% if request.user.is_authenticated %}
-                {{request.user}} - 
-                Logout</a>
-                {% else %}
-                <a href="{% url 'social:begin' 'google-oauth2' %}">With Google</a>
-                {% endif %}
-            </button>   
-        </div>
-
-    </div>
-
-
-    <div class="topele">
-        <h1 class="h1text"> CONTESTS</h1>
-        <div class="buttons">
-            <a href="/set_notification"> <button class="blob-btn">
-                    CLICK HERE FOR PERSONALISED CONTENTS.
-                    <span class="blob-btn__inner">
-                        <span class="blob-btn__blobs">
-                            <span class="blob-btn__blob"></span>
-                            <span class="blob-btn__blob"></span>
-                            <span class="blob-btn__blob"></span>
-                            <span class="blob-btn__blob"></span>
-                        </span>
-                    </span>
-                </button></a>
-            <br />
-
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                <defs>
-                    <filter id="goo">
-                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                            result="goo">
-                        </feColorMatrix>
-                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                    </filter>
-                </defs>
-            </svg>
-        </div>
-    </div>
-    
-
-    <div class="row row-cols-1 row-cols-md-3   ">
-
-        {% for contest in contests %}
-        <div class="col">
-            <div id="cards" class="card h-100 ">
-                <h4 style="min-width: 431px; min-height: 50px;"><a href="{{contest.platform.platform_link}}" style="text-decoration: none;" target="_blank"><img
-                            src="/media/{{contest.platform.platform_img}}/" >&nbsp;&nbsp;&nbsp;{{contest.platform}}</a></h4>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{{contest.contest_link}}" target="_blank" rel="noopener noreferrer" style="color: black;">{{contest.contest}}</a></h5>
-                    <p class="card-text">{{contest.when}}</p>
-                    <p class="card-text">{{contest.duration}} Hrs</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-
-    </div>
-
-
-    <footer>
-        <div class="content">
-            <div class="top">
-                <div class="logo-details">
-                    <span class="logo_name"> <img src="/static/images/bell.png" height="75px"> ON ALERT </span>
-                </div>
-                <!-- <div class="media-icons">
-        <a target="on_blank" href="#"><i class="fab fa-facebook"></i></a>
-        <a target="on_blank" href="https://www.instagram.com/pico_india/"><i class="fab fa-instagram"></i></a>
-      </div> -->
-            </div>
-            <div class="link-boxes">
-                <ul class="box">
-                    <li class="link_name" id="foot1">Links</li>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about_us">About Us</a></li>
-                    <li><a href="/contests">Contests</a></li>
-                    <li><a href="/contact_us">Contact Us</a></li>
-
-                </ul>
-                <ul class="box">
-                    <li class="link_name" id="foot2">Recommended</li>
-                    <li><a href="https://www.codechef.com/">CodeChef</a></li>
-                    <li><a href="https://codeforces.com/">Codeforces</a></li>
-                    <li><a href="https://leetcode.com/">Leetcode</a></li>
-
-
-                </ul>
-                <ul class="box">
-                    <li class="link_name" id="foot3">Legal Info</li>
-                    <li><a href="">Licence</a></li>
-                    <li><a href="">Terms and Conditions</a></li>
-                    <li><a href="">Privacy Policies</a></li>
-
-                </ul>
-                <ul class="box">
-                    <li class="link_name" id="foot4">Contact</li>
-                    <li><a target="on_blank" href="tel:+919079680135">+91 9876543210</a></li>
-                    <li><a target="on_blank" href="mailto:'21dce071@gmail.com'">
-                            21dce071@charusat.edu.in</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <hr style="border-color: white ;">
-        <div id="copyright">
-            <h1 id="copyright1"> Copyright © 2021 On Alert</h1>
-        </div>
-    </footer>
-
-
-
-
-    <script>
-        document.getElementById("login-btn").addEventListener("click", function () {
-            document.querySelector("login-form").style.display = "flex";
-        })
-
-    </script>
-    <!-- <script>
-    var modal = document.getElementById('login-form');
-    window.onclick = function(event) 
-    {
-        if (event.target == modal) 
-        {
-            modal.style.display = "none";
-        }
-    }
-  </script> -->
-    <script>
-        console.clear();
-
-        // const loginBtn = document.getElementById('login');
-        // const signupBtn = document.getElementById('signup');
-
-        loginBtn.addEventListener('click', (e) => {
-            let parent = e.target.parentNode.parentNode;
-            Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-                if (element !== "slide-up") {
-                    parent.classList.add('slide-up')
-                } else {
-                    signupBtn.parentNode.classList.add('slide-up')
-                    parent.classList.remove('slide-up')
-                }
-            });
-        });
-
-        signupBtn.addEventListener('click', (e) => {
-            let parent = e.target.parentNode;
-            Array.from(e.target.parentNode.classList).find((element) => {
-                if (element !== "slide-up") {
-                    parent.classList.add('slide-up')
-                } else {
-                    loginBtn.parentNode.parentNode.classList.add('slide-up')
-                    parent.classList.remove('slide-up')
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $('.button--bubble').each(function () {
-            var $circlesTopLeft = $(this).parent().find('.circle.top-left');
-            var $circlesBottomRight = $(this).parent().find('.circle.bottom-right');
-
-            var tl = new TimelineLite();
-            var tl2 = new TimelineLite();
-
-            var btTl = new TimelineLite({ paused: true });
-
-            tl.to($circlesTopLeft, 1.2, { x: -25, y: -25, scaleY: 2, ease: SlowMo.ease.config(0.1, 0.7, false) });
-            tl.to($circlesTopLeft.eq(0), 0.1, { scale: 0.2, x: '+=6', y: '-=2' });
-            tl.to($circlesTopLeft.eq(1), 0.1, { scaleX: 1, scaleY: 0.8, x: '-=10', y: '-=7' }, '-=0.1');
-            tl.to($circlesTopLeft.eq(2), 0.1, { scale: 0.2, x: '-=15', y: '+=6' }, '-=0.1');
-            tl.to($circlesTopLeft.eq(0), 1, { scale: 0, x: '-=5', y: '-=15', opacity: 0 });
-            tl.to($circlesTopLeft.eq(1), 1, { scaleX: 0.4, scaleY: 0.4, x: '-=10', y: '-=10', opacity: 0 }, '-=1');
-            tl.to($circlesTopLeft.eq(2), 1, { scale: 0, x: '-=15', y: '+=5', opacity: 0 }, '-=1');
-
-            var tlBt1 = new TimelineLite();
-            var tlBt2 = new TimelineLite();
-
-            tlBt1.set($circlesTopLeft, { x: 0, y: 0, rotation: -45 });
-            tlBt1.add(tl);
-
-            tl2.set($circlesBottomRight, { x: 0, y: 0 });
-            tl2.to($circlesBottomRight, 1.1, { x: 30, y: 30, ease: SlowMo.ease.config(0.1, 0.7, false) });
-            tl2.to($circlesBottomRight.eq(0), 0.1, { scale: 0.2, x: '-=6', y: '+=3' });
-            tl2.to($circlesBottomRight.eq(1), 0.1, { scale: 0.8, x: '+=7', y: '+=3' }, '-=0.1');
-            tl2.to($circlesBottomRight.eq(2), 0.1, { scale: 0.2, x: '+=15', y: '-=6' }, '-=0.2');
-            tl2.to($circlesBottomRight.eq(0), 1, { scale: 0, x: '+=5', y: '+=15', opacity: 0 });
-            tl2.to($circlesBottomRight.eq(1), 1, { scale: 0.4, x: '+=7', y: '+=7', opacity: 0 }, '-=1');
-            tl2.to($circlesBottomRight.eq(2), 1, { scale: 0, x: '+=15', y: '-=5', opacity: 0 }, '-=1');
-
-            tlBt2.set($circlesBottomRight, { x: 0, y: 0, rotation: 45 });
-            tlBt2.add(tl2);
-
-            btTl.add(tlBt1);
-            btTl.to($(this).parent().find('.button.effect-button'), 0.8, { scaleY: 1.1 }, 0.1);
-            btTl.add(tlBt2, 0.2);
-            btTl.to($(this).parent().find('.button.effect-button'), 1.8, { scale: 1, ease: Elastic.easeOut.config(1.2, 0.4) }, 1.2);
-
-            btTl.timeScale(2.6);
-
-            $(this).on('mouseover', function () {
-                btTl.restart();
-            });
-        });
-    </script>
-
-</body>
-
-</html>
-
-
-{% comment %} 
-
-{% extends 'basic.html' %} 
+{% extends 'basic.html' %}
 
 {% load static %}
 
-
 {% block style %}
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -288,6 +14,186 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/contents.css' %}">
+{% endblock style %}
+
+{% block body %}
+<style>body{
+  margin-bottom: 1px;
+}
+</style>
+  <div class="topele">
+    <h1 class="h1text">CONTESTS</h1>
+    <div class="buttons">
+      <a href="/set_notification"> <button class="blob-btn">
+          CLICK HERE FOR PERSONALISED CONTENTS.
+          <span class="blob-btn__inner">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </button></a>
+      <br />
+
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
+            </feColorMatrix>
+            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+
+  <div class="row row-cols-1 row-cols-md-3">
+
+    {% for contest in contests %}
+    <div class="col">
+      <div id="cards" class="card h-100 ">
+        <h4 style="min-width: 431px; min-height: 50px;"><a href="{{contest.platform.platform_link}}"
+            style="text-decoration: none;" target="_blank"><img src="/media/{{contest.platform.platform_img}}/" id="space">{{contest.platform}}</a></h4>
+        <div class="card-body">
+          <h5 class="card-title"><a href="{{contest.contest_link}}" target="_blank" rel="noopener noreferrer"
+              style="color: black;">{{contest.contest}}</a></h5>
+          <p class="card-text">{{contest.when}}</p>
+          <p class="card-text">{{contest.duration}} Hrs</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+{% endblock body %}
+
+
+  <script>
+    document.getElementById("login-btn").addEventListener("click", function () {
+      document.querySelector("login-form").style.display = "flex";
+    })
+
+  </script>
+  <!-- <script>
+    var modal = document.getElementById('login-form');
+    window.onclick = function(event) 
+    {
+        if (event.target == modal) 
+        {
+            modal.style.display = "none";
+        }
+    }
+  </script> -->
+  <script>
+    console.clear();
+
+    // const loginBtn = document.getElementById('login');
+    // const signupBtn = document.getElementById('signup');
+
+    loginBtn.addEventListener('click', (e) => {
+      let parent = e.target.parentNode.parentNode;
+      Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+        if (element !== "slide-up") {
+          parent.classList.add('slide-up')
+        } else {
+          signupBtn.parentNode.classList.add('slide-up')
+          parent.classList.remove('slide-up')
+        }
+      });
+    });
+
+    signupBtn.addEventListener('click', (e) => {
+      let parent = e.target.parentNode;
+      Array.from(e.target.parentNode.classList).find((element) => {
+        if (element !== "slide-up") {
+          parent.classList.add('slide-up')
+        } else {
+          loginBtn.parentNode.parentNode.classList.add('slide-up')
+          parent.classList.remove('slide-up')
+        }
+      });
+    });
+  </script>
+
+  <script>
+    $('.button--bubble').each(function () {
+      var $circlesTopLeft = $(this).parent().find('.circle.top-left');
+      var $circlesBottomRight = $(this).parent().find('.circle.bottom-right');
+
+      var tl = new TimelineLite();
+      var tl2 = new TimelineLite();
+
+      var btTl = new TimelineLite({ paused: true });
+
+      tl.to($circlesTopLeft, 1.2, { x: -25, y: -25, scaleY: 2, ease: SlowMo.ease.config(0.1, 0.7, false) });
+      tl.to($circlesTopLeft.eq(0), 0.1, { scale: 0.2, x: '+=6', y: '-=2' });
+      tl.to($circlesTopLeft.eq(1), 0.1, { scaleX: 1, scaleY: 0.8, x: '-=10', y: '-=7' }, '-=0.1');
+      tl.to($circlesTopLeft.eq(2), 0.1, { scale: 0.2, x: '-=15', y: '+=6' }, '-=0.1');
+      tl.to($circlesTopLeft.eq(0), 1, { scale: 0, x: '-=5', y: '-=15', opacity: 0 });
+      tl.to($circlesTopLeft.eq(1), 1, { scaleX: 0.4, scaleY: 0.4, x: '-=10', y: '-=10', opacity: 0 }, '-=1');
+      tl.to($circlesTopLeft.eq(2), 1, { scale: 0, x: '-=15', y: '+=5', opacity: 0 }, '-=1');
+
+      var tlBt1 = new TimelineLite();
+      var tlBt2 = new TimelineLite();
+
+      tlBt1.set($circlesTopLeft, { x: 0, y: 0, rotation: -45 });
+      tlBt1.add(tl);
+
+      tl2.set($circlesBottomRight, { x: 0, y: 0 });
+      tl2.to($circlesBottomRight, 1.1, { x: 30, y: 30, ease: SlowMo.ease.config(0.1, 0.7, false) });
+      tl2.to($circlesBottomRight.eq(0), 0.1, { scale: 0.2, x: '-=6', y: '+=3' });
+      tl2.to($circlesBottomRight.eq(1), 0.1, { scale: 0.8, x: '+=7', y: '+=3' }, '-=0.1');
+      tl2.to($circlesBottomRight.eq(2), 0.1, { scale: 0.2, x: '+=15', y: '-=6' }, '-=0.2');
+      tl2.to($circlesBottomRight.eq(0), 1, { scale: 0, x: '+=5', y: '+=15', opacity: 0 });
+      tl2.to($circlesBottomRight.eq(1), 1, { scale: 0.4, x: '+=7', y: '+=7', opacity: 0 }, '-=1');
+      tl2.to($circlesBottomRight.eq(2), 1, { scale: 0, x: '+=15', y: '-=5', opacity: 0 }, '-=1');
+
+      tlBt2.set($circlesBottomRight, { x: 0, y: 0, rotation: 45 });
+      tlBt2.add(tl2);
+
+      btTl.add(tlBt1);
+      btTl.to($(this).parent().find('.button.effect-button'), 0.8, { scaleY: 1.1 }, 0.1);
+      btTl.add(tlBt2, 0.2);
+      btTl.to($(this).parent().find('.button.effect-button'), 1.8, { scale: 1, ease: Elastic.easeOut.config(1.2, 0.4) }, 1.2);
+
+      btTl.timeScale(2.6);
+
+      $(this).on('mouseover', function () {
+        btTl.restart();
+      });
+    });
+  </script>
+
+</body>
+
+</html>
+
+
+{% comment %}
+
+{% extends 'basic.html' %}
+
+{% load static %}
+
+
+{% block style %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/easing/EasePack.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/contents.css' %}">
 
 
 {% endblock style %}
@@ -408,13 +314,13 @@
 
 {% block script %}
 
-  <script>
-    document.getElementById("login-btn").addEventListener("click", function () {
-      document.querySelector("login-form").style.display = "flex";
-    })
+<script>
+  document.getElementById("login-btn").addEventListener("click", function () {
+    document.querySelector("login-form").style.display = "flex";
+  })
 
-  </script>
-  <!-- <script>
+</script>
+<!-- <script>
     var modal = document.getElementById('login-form');
     window.onclick = function(event) 
     {
@@ -424,84 +330,84 @@
         }
     }
   </script> -->
-  <script>
-    console.clear();
+<script>
+  console.clear();
 
-    const loginBtn = document.getElementById('login');
-    const signupBtn = document.getElementById('signup');
+  const loginBtn = document.getElementById('login');
+  const signupBtn = document.getElementById('signup');
 
-    loginBtn.addEventListener('click', (e) => {
-      let parent = e.target.parentNode.parentNode;
-      Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-        if (element !== "slide-up") {
-          parent.classList.add('slide-up')
-        } else {
-          signupBtn.parentNode.classList.add('slide-up')
-          parent.classList.remove('slide-up')
-        }
-      });
+  loginBtn.addEventListener('click', (e) => {
+    let parent = e.target.parentNode.parentNode;
+    Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+      if (element !== "slide-up") {
+        parent.classList.add('slide-up')
+      } else {
+        signupBtn.parentNode.classList.add('slide-up')
+        parent.classList.remove('slide-up')
+      }
     });
+  });
 
-    signupBtn.addEventListener('click', (e) => {
-      let parent = e.target.parentNode;
-      Array.from(e.target.parentNode.classList).find((element) => {
-        if (element !== "slide-up") {
-          parent.classList.add('slide-up')
-        } else {
-          loginBtn.parentNode.parentNode.classList.add('slide-up')
-          parent.classList.remove('slide-up')
-        }
-      });
+  signupBtn.addEventListener('click', (e) => {
+    let parent = e.target.parentNode;
+    Array.from(e.target.parentNode.classList).find((element) => {
+      if (element !== "slide-up") {
+        parent.classList.add('slide-up')
+      } else {
+        loginBtn.parentNode.parentNode.classList.add('slide-up')
+        parent.classList.remove('slide-up')
+      }
     });
-  </script>
+  });
+</script>
 
-  <script>
-    $('.button--bubble').each(function () {
-      var $circlesTopLeft = $(this).parent().find('.circle.top-left');
-      var $circlesBottomRight = $(this).parent().find('.circle.bottom-right');
+<script>
+  $('.button--bubble').each(function () {
+    var $circlesTopLeft = $(this).parent().find('.circle.top-left');
+    var $circlesBottomRight = $(this).parent().find('.circle.bottom-right');
 
-      var tl = new TimelineLite();
-      var tl2 = new TimelineLite();
+    var tl = new TimelineLite();
+    var tl2 = new TimelineLite();
 
-      var btTl = new TimelineLite({ paused: true });
+    var btTl = new TimelineLite({ paused: true });
 
-      tl.to($circlesTopLeft, 1.2, { x: -25, y: -25, scaleY: 2, ease: SlowMo.ease.config(0.1, 0.7, false) });
-      tl.to($circlesTopLeft.eq(0), 0.1, { scale: 0.2, x: '+=6', y: '-=2' });
-      tl.to($circlesTopLeft.eq(1), 0.1, { scaleX: 1, scaleY: 0.8, x: '-=10', y: '-=7' }, '-=0.1');
-      tl.to($circlesTopLeft.eq(2), 0.1, { scale: 0.2, x: '-=15', y: '+=6' }, '-=0.1');
-      tl.to($circlesTopLeft.eq(0), 1, { scale: 0, x: '-=5', y: '-=15', opacity: 0 });
-      tl.to($circlesTopLeft.eq(1), 1, { scaleX: 0.4, scaleY: 0.4, x: '-=10', y: '-=10', opacity: 0 }, '-=1');
-      tl.to($circlesTopLeft.eq(2), 1, { scale: 0, x: '-=15', y: '+=5', opacity: 0 }, '-=1');
+    tl.to($circlesTopLeft, 1.2, { x: -25, y: -25, scaleY: 2, ease: SlowMo.ease.config(0.1, 0.7, false) });
+    tl.to($circlesTopLeft.eq(0), 0.1, { scale: 0.2, x: '+=6', y: '-=2' });
+    tl.to($circlesTopLeft.eq(1), 0.1, { scaleX: 1, scaleY: 0.8, x: '-=10', y: '-=7' }, '-=0.1');
+    tl.to($circlesTopLeft.eq(2), 0.1, { scale: 0.2, x: '-=15', y: '+=6' }, '-=0.1');
+    tl.to($circlesTopLeft.eq(0), 1, { scale: 0, x: '-=5', y: '-=15', opacity: 0 });
+    tl.to($circlesTopLeft.eq(1), 1, { scaleX: 0.4, scaleY: 0.4, x: '-=10', y: '-=10', opacity: 0 }, '-=1');
+    tl.to($circlesTopLeft.eq(2), 1, { scale: 0, x: '-=15', y: '+=5', opacity: 0 }, '-=1');
 
-      var tlBt1 = new TimelineLite();
-      var tlBt2 = new TimelineLite();
+    var tlBt1 = new TimelineLite();
+    var tlBt2 = new TimelineLite();
 
-      tlBt1.set($circlesTopLeft, { x: 0, y: 0, rotation: -45 });
-      tlBt1.add(tl);
+    tlBt1.set($circlesTopLeft, { x: 0, y: 0, rotation: -45 });
+    tlBt1.add(tl);
 
-      tl2.set($circlesBottomRight, { x: 0, y: 0 });
-      tl2.to($circlesBottomRight, 1.1, { x: 30, y: 30, ease: SlowMo.ease.config(0.1, 0.7, false) });
-      tl2.to($circlesBottomRight.eq(0), 0.1, { scale: 0.2, x: '-=6', y: '+=3' });
-      tl2.to($circlesBottomRight.eq(1), 0.1, { scale: 0.8, x: '+=7', y: '+=3' }, '-=0.1');
-      tl2.to($circlesBottomRight.eq(2), 0.1, { scale: 0.2, x: '+=15', y: '-=6' }, '-=0.2');
-      tl2.to($circlesBottomRight.eq(0), 1, { scale: 0, x: '+=5', y: '+=15', opacity: 0 });
-      tl2.to($circlesBottomRight.eq(1), 1, { scale: 0.4, x: '+=7', y: '+=7', opacity: 0 }, '-=1');
-      tl2.to($circlesBottomRight.eq(2), 1, { scale: 0, x: '+=15', y: '-=5', opacity: 0 }, '-=1');
+    tl2.set($circlesBottomRight, { x: 0, y: 0 });
+    tl2.to($circlesBottomRight, 1.1, { x: 30, y: 30, ease: SlowMo.ease.config(0.1, 0.7, false) });
+    tl2.to($circlesBottomRight.eq(0), 0.1, { scale: 0.2, x: '-=6', y: '+=3' });
+    tl2.to($circlesBottomRight.eq(1), 0.1, { scale: 0.8, x: '+=7', y: '+=3' }, '-=0.1');
+    tl2.to($circlesBottomRight.eq(2), 0.1, { scale: 0.2, x: '+=15', y: '-=6' }, '-=0.2');
+    tl2.to($circlesBottomRight.eq(0), 1, { scale: 0, x: '+=5', y: '+=15', opacity: 0 });
+    tl2.to($circlesBottomRight.eq(1), 1, { scale: 0.4, x: '+=7', y: '+=7', opacity: 0 }, '-=1');
+    tl2.to($circlesBottomRight.eq(2), 1, { scale: 0, x: '+=15', y: '-=5', opacity: 0 }, '-=1');
 
-      tlBt2.set($circlesBottomRight, { x: 0, y: 0, rotation: 45 });
-      tlBt2.add(tl2);
+    tlBt2.set($circlesBottomRight, { x: 0, y: 0, rotation: 45 });
+    tlBt2.add(tl2);
 
-      btTl.add(tlBt1);
-      btTl.to($(this).parent().find('.button.effect-button'), 0.8, { scaleY: 1.1 }, 0.1);
-      btTl.add(tlBt2, 0.2);
-      btTl.to($(this).parent().find('.button.effect-button'), 1.8, { scale: 1, ease: Elastic.easeOut.config(1.2, 0.4) }, 1.2);
+    btTl.add(tlBt1);
+    btTl.to($(this).parent().find('.button.effect-button'), 0.8, { scaleY: 1.1 }, 0.1);
+    btTl.add(tlBt2, 0.2);
+    btTl.to($(this).parent().find('.button.effect-button'), 1.8, { scale: 1, ease: Elastic.easeOut.config(1.2, 0.4) }, 1.2);
 
-      btTl.timeScale(2.6);
+    btTl.timeScale(2.6);
 
-      $(this).on('mouseover', function () {
-        btTl.restart();
-      });
+    $(this).on('mouseover', function () {
+      btTl.restart();
     });
-  </script>
+  });
+</script>
 
 {% endblock script %} {% endcomment %}

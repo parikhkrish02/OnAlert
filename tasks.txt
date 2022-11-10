@@ -1,0 +1,6 @@
+1. add login/signup model in django
+2. add js to trigger the login/sign-up page
+3. create a sort filter in contests.html for platform
+4. design CUSTOM page
+5. add js to show pLEASE WAIT POP UP
+6. change time format

@@ -132,7 +132,9 @@ def CodeChef():
 
     for contest in all_contest:
         contest_name.append(contest["contest_name"])
-        contest_start.append(contest["contest_start_date_iso"])
+        start_date=contest["contest_start_date_iso"]
+        start_date=start_date.replace("T"," ")
+        contest_start.append(start_date[:19])
         contest_duration.append(contest["contest_duration"])
         contest_link.append("https://www.codechef.com/" + contest["contest_code"])
 
@@ -143,6 +145,12 @@ def CodeChef():
             pass
         else:
             duration_hrs = str(int(duration) // 60) + ":" + str(int(duration) % 60)
+            if len(duration_hrs) == 4:
+                duration_hrs += "0"
+            if len(duration_hrs) == 3:
+                duration_hrs="0"+duration_hrs+"0"
+
+            warnings.filterwarnings(action="ignore", category=RuntimeWarning)
             temp = Contest(
                 platform=Platform.objects.get(platform_name="CodeChef"),
                 contest=name,
@@ -242,7 +250,9 @@ def AtCoder():
     for (name, start, duration, link) in zip(
         contest_name, contest_start, contest_duration, contest_link
     ):
-        if not Contest.objects.filter(contest=name).exists():
+        if (not Contest.objects.filter(contest=name).exists()) and (
+            duration != "216:00"
+        ):
             warnings.filterwarnings(action="ignore", category=RuntimeWarning)
             temp = Contest(
                 platform=Platform.objects.get(platform_name="AtCoder"),
