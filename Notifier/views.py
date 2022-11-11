@@ -139,7 +139,7 @@ def myContest(request):
             contests.append(temp_contest)
 
     params = {"contests": contests}
-    return render(request, "MyContest.html", params)
+    return render(request, "mycon.html", params)
 
 
 def scrape(requests):

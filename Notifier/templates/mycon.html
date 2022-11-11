@@ -1,0 +1,86 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/easing/EasePack.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/contents.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/mycon.css' %}">
+{% endblock style %}
+
+{% block body %}
+
+<div class="topele">
+  <div class="buttons">
+    <a href="/set_notification"><button class="blob-btn">
+        CLICK HERE FOR PERSONALISED CONTENTS.
+        <span class="blob-btn__inner">
+          <span class="blob-btn__blobs">
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+          </span>
+        </span>
+      </button></a>
+    <br />
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
+          </feColorMatrix>
+          <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+</div>
+
+<ul class="tilesWrap">
+{% for contest in contests %}
+  <li>
+      <h2>
+        {% if contest.platform.platform_name == "CodeChef" %}
+        <a href="https://www.codechef.com/" target="_blank"><img src="{% static 'images/ROTVNVz7_400x400-removebg-preview.png' %}" alt="platform" height="150px"></a>
+        {% endif %}
+        {% if contest.platform.platform_name == "CodeForces" %}
+        <a href="https://www.codechef.com/" target="_blank"><img src="{% static 'images/code-forces-3628695-3029920.webp' %}" alt="platform" height="70px"></a>
+        {% endif %}
+        {% if contest.platform.platform_name == "AtCoder" %}
+        <a href="https://www.codechef.com/" target="_blank"><img src="{% static 'atcoder-removebg-preview.png' %}" alt="platform" height="120px"></a>
+        {% endif %}
+
+      </h2>
+      <h3>{{contest.platform.platform_name}}</h3>
+      <br>
+      <p>
+        {{contest.contest}}
+        <br>
+        {{contest.when}}
+        <br>
+        Duration : {{contest.duration}} Hrs.
+      </p>
+      <a href="{{contest.contest_link}}" target="_blank" rel="noopener noreferrer"><button>Visit</button></a>
+    </li>
+{% endfor %}
+</ul>
+  
+{% endblock body %}
