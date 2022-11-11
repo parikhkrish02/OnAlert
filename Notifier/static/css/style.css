@@ -78,8 +78,9 @@ a {
 }
 
 .hi{
-	display: flex;
+	display: inline;
 }
+
 
 #login-form {
 	display: none;
@@ -560,8 +561,8 @@ footer#copyright#copyright1 {
 }
 
 .loggin {
-	padding-left: 350px;
-	backdrop-filter: blur(250px);
+	margin-left: 700px;
+	background-color: black;
 }
 
 .carousel-caption {

@@ -3,6 +3,7 @@ import warnings
 from django.shortcuts import render, redirect
 from .models import Contest, Platform, User, MyContest
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 
 from bs4 import BeautifulSoup
 import requests
@@ -18,8 +19,43 @@ def home(request):
     return render(request, "index.html", params)
 
 
-def login(request):
-    return render(request, "login.html")
+def loginPage(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user=User.objects.get(username=username,password=password)
+        if user:
+            login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+
+    return redirect("home")
+
+
+def signUp(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        if username == "":
+            return redirect("home")
+
+        if User.objects.filter(email=email).exists():
+            return redirect("home")
+
+        elif User.objects.filter(username=username).exists():
+            return redirect("home")
+
+        else:
+            user = User.objects.create(
+                username=username, email=email, password=password
+            )
+            user.save()
+            login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+
+            return redirect("home")
+    else:
+        return redirect("home")
 
 
 # @login_required
@@ -132,8 +168,8 @@ def CodeChef():
 
     for contest in all_contest:
         contest_name.append(contest["contest_name"])
-        start_date=contest["contest_start_date_iso"]
-        start_date=start_date.replace("T"," ")
+        start_date = contest["contest_start_date_iso"]
+        start_date = start_date.replace("T", " ")
         contest_start.append(start_date[:19])
         contest_duration.append(contest["contest_duration"])
         contest_link.append("https://www.codechef.com/" + contest["contest_code"])
@@ -148,7 +184,7 @@ def CodeChef():
             if len(duration_hrs) == 4:
                 duration_hrs += "0"
             if len(duration_hrs) == 3:
-                duration_hrs="0"+duration_hrs+"0"
+                duration_hrs = "0" + duration_hrs + "0"
 
             warnings.filterwarnings(action="ignore", category=RuntimeWarning)
             temp = Contest(
