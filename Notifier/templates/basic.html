@@ -40,9 +40,11 @@
                     <li class="nav-item">
                         <a href="/contests" class="nav-link px-2 link-dark">Contests</a>
                     </li>
+                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a href="/my_contest" class="nav-link px-2 link-dark">Custom</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a href="/contact_us" class="nav-link px-2 link-dark">Contact</a>
                     </li>
