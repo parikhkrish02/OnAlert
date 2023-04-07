@@ -1,6 +1,6 @@
 # OnAlert
 
-A Competitive Programming contests Notifier in Django. Stay updated with all contests and never miss upon any contest.
+A Competitive Programming contests Notifier in Django. Stay updated with all contests and never miss upon any opportunity.
 
 This is the website we created as our 3<sup>rd</sup> semester SGP project 🎉
 
