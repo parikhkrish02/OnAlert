@@ -40,10 +40,16 @@
                     <li class="nav-item">
                         <a href="/contests" class="nav-link px-2 link-dark">Contests</a>
                     </li>
-                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="/my_contest" class="nav-link px-2 link-dark">Custom</a>
+                        <a href="/my_contest" class="nav-link px-2 link-dark" id="myContest">Custom</a>
                     </li>
+                    {% if not request.user.is_authenticated %}
+                    <script>
+                        let myContest = document.querySelector("#myContest");
+                        myContest.addEventListener('click', () => {
+                            alert("Login To Continue !!");
+                        })
+                    </script>
                     {% endif %}
                     <li class="nav-item">
                         <a href="/contact_us" class="nav-link px-2 link-dark">Contact</a>
@@ -75,9 +81,9 @@
                 <div class="signup">
                     <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
                     <div class="form-holder">
-                        <input type="text" class="input" placeholder="Name" name="username"/>
-                        <input type="email" class="input" placeholder="Email" name="email"/>
-                        <input type="password" class="input" placeholder="Password" name="password"/>
+                        <input type="text" class="input" placeholder="Name" name="username" />
+                        <input type="email" class="input" placeholder="Email" name="email" />
+                        <input type="password" class="input" placeholder="Password" name="password" />
                     </div>
                     <button class="submit-btn">Sign up</button>
                 </div>
@@ -87,8 +93,8 @@
                     <div class="center">
                         <h2 class="form-title" id="login"><span>or</span>Log in</h2>
                         <div class="form-holder">
-                            <input type="text" class="input" placeholder="Username" name="username"/>
-                            <input type="password" class="input" placeholder="Password" name="password"/>
+                            <input type="text" class="input" placeholder="Username" name="username" />
+                            <input type="password" class="input" placeholder="Password" name="password" />
                         </div>
                         <button class="submit-btn">Log in</button>
                     </div>

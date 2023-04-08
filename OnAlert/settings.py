@@ -152,3 +152,16 @@ LOGOUT_REDIRECT_URL = 'home'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '839334258697-u6r3siesv99e4v3v61qkatb3ob1rt0p0.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='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'
+
+# EMAIL_BACKEND = 'post_office.EmailBackend'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'onalertllc@gmail.com'
+EMAIL_HOST_PASSWORD = 'wnxxgbjncgzjjbee'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'default from email'
+
+# wnxxgbjncgzjjbee

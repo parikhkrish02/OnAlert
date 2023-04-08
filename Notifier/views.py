@@ -4,12 +4,28 @@ from django.shortcuts import render, redirect
 from .models import Contest, Platform, User, MyContest
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
 
 from bs4 import BeautifulSoup
 import requests
 import time
 
 # Create your views here.
+
+
+# Email testing Endpoint
+def sending_email(request):
+    send_mail(
+        "Welcome to OnAlert",
+        "Stay updated with CP contest's updates with us. Happy Coding 🙌 !!",
+        settings.EMAIL_HOST_USER,
+        ["parikhkrish01@gmail.com"],
+        fail_silently=True,
+    )
+
+    return HttpResponse("Mail Sent !!")
 
 
 def home(request):
@@ -24,9 +40,17 @@ def loginPage(request):
         username = request.POST["username"]
         password = request.POST["password"]
 
-        user=User.objects.get(username=username,password=password)
+        user = User.objects.get(username=username, password=password)
         if user:
             login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+            email = User.objects.get(username=username).email
+            send_mail(
+                "Welcome to OnAlert",
+                "Stay updated with CP contest's updates with us. Happy Coding 🙌 !!",
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=True,
+            )
 
     return redirect("home")
 
@@ -52,6 +76,15 @@ def signUp(request):
             )
             user.save()
             login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+            send_mail(
+                "Welcome to OnAlert",
+                "Stay updated with CP contest's updates with us. Happy Coding 🙌 !!",
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=True,
+            )
+
+            MyContest.objects.create(user=user).save()
 
             return redirect("home")
     else:
