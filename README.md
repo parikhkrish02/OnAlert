@@ -4,6 +4,14 @@ A Competitive Programming contests Notifier in Django. Stay updated with all con
 
 This is the website we created as our 3<sup>rd</sup> semester SGP project 🎉
 
+## Tech Stack
+
+<li>Bootstrap</li>
+<li>Django</li>
+<li>Django Templating Language</li>
+<li>Django mailing</li>
+<li>Social Login (Google OAuth)</li>
+
 ## Screen Shots Preview
 
 ## `Home Page`
